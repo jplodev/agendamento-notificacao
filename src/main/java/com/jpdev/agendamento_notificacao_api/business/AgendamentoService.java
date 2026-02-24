@@ -3,6 +3,7 @@ package com.jpdev.agendamento_notificacao_api.business;
 import com.jpdev.agendamento_notificacao_api.business.dtos.in.AgendamentoDTOIn;
 import com.jpdev.agendamento_notificacao_api.business.dtos.out.AgendamentoDTOOut;
 import com.jpdev.agendamento_notificacao_api.business.mapper.AgendamentoMapper;
+import com.jpdev.agendamento_notificacao_api.infrastructure.entities.Agendamento;
 import com.jpdev.agendamento_notificacao_api.infrastructure.exceptions.ResourceNotFountException;
 import com.jpdev.agendamento_notificacao_api.infrastructure.repositories.AgendamentoRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,12 @@ public class AgendamentoService {
     public AgendamentoDTOOut buscaAgendamentoPorId(Long id){
         return mapper.paraAgendamentoOut(repository.findById(id).orElseThrow(
                 () -> new ResourceNotFountException("Id não encontrado" + id)));
+    }
+
+    public void cancelarAgendamento(Long id){
+        Agendamento agendamento = repository.findById(id).orElseThrow(
+                () -> new ResourceNotFountException("Id não encontrado" + id));
+        repository.save(mapper.paraCancelarAgendamento(agendamento));
     }
 
 }
