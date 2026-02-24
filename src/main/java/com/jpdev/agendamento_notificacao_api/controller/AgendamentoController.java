@@ -6,10 +6,7 @@ import com.jpdev.agendamento_notificacao_api.business.dtos.out.AgendamentoDTOOut
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,5 +18,10 @@ public class AgendamentoController {
     @PostMapping
     public ResponseEntity<AgendamentoDTOOut> gravaAgendamento(@RequestBody AgendamentoDTOIn agendamento){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.gravaAgendamento(agendamento));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AgendamentoDTOOut> buscaAgendamentoPorId(@PathVariable("id") Long id){
+        return ResponseEntity.ok(service.buscaAgendamentoPorId(id));
     }
 }
