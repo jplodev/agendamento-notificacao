@@ -1,4 +1,4 @@
-package com.jpdev.agendamento_notificacao_api.business;
+package com.jpdev.agendamento_notificacao_api.business.mapper;
 
 import com.jpdev.agendamento_notificacao_api.business.dtos.in.AgendamentoDTOIn;
 import com.jpdev.agendamento_notificacao_api.business.dtos.out.AgendamentoDTOOut;
